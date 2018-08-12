@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>导航和轮播</title>
+
+<script src="js/jquery/2.0.0/jquery.min.js" ></script>
+<link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+<script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
+</head>
+
+<script>
+	$(function(){
+//	 	导航条上悬停，会在对应的分类上，弹出猫耳朵
+		$("div.categoryWithCarousel div.headbar a").mouseenter(function(){
+// 			这里要注意 猫耳朵是绝对定位的，并且和推荐的分类放在了相同的地位，因此用position获取相对位置是可以的。
+// 			如果把猫耳朵放在别的位置，那么需要使用offset获取绝对位置
+			var left = $(this).position().left;
+			var top = $(this).position().top;
+			var width = $(this).css("width");
+			var destLeft = parseInt(left) + parseInt(width)/2;
+			$("img#catear").css("left",destLeft);
+			$("img#catear").css("top",top-20);
+			$("img#catear").fadeIn(500);
+		})
+		$("div.categoryWithCarousel div.headbar a").mouseleave(function(){
+			$("img#catear").hide();
+		})
+		
+// 		商品分类悬停
+		$("div.categoryWithCarousel div.headbar span.head").mouseenter(function(){
+			$("div.categoryMenu").show();
+		})
+		$("div.categoryWithCarousel div.headbar span.head").mouseleave(function(){
+			$("div.categoryMenu").hide();
+		})
+		$("div.categoryMenu").mouseenter(function(){
+			$(this).show();
+		})
+		$("div.categoryMenu").mouseleave(function(){
+			$(this).hide();
+		})
+		$("div.categoryMenu div.eachCategory").mouseenter(function(){
+			var cid = $(this).attr("cid");
+	        showProductsAsideCategorys(cid);
+		})
+		$("div.categoryMenu div.eachCategory").mouseleave(function(){
+			var cid = $(this).attr("cid");
+	        hideProductsAsideCategorys(cid);
+		})
+		$("div.productsAsideCategorys").mouseenter(function(){
+			var cid = $(this).attr("cid");
+	        showProductsAsideCategorys(cid);
+		})
+		$("div.productsAsideCategorys").mouseleave(function(){
+			var cid = $(this).attr("cid");
+	        hideProductsAsideCategorys(cid);
+		})
+	})
+	
+	function showProductsAsideCategorys(cid){
+		$("div.categoryMenu").show();	//为了不让菜单消失
+		$("div.eachCategory[cid="+cid+"]").css("background-color","white");	//为了不让菜单高亮消失
+	    $("div.eachCategory[cid="+cid+"] a").css("color","#87CEFA");	//为了不让菜单高亮消失
+		$("div.productsAsideCategorys[cid=" + cid + "]").show();
+	}
+	function hideProductsAsideCategorys(cid){
+		$("div.categoryMenu").hide();
+		$("div.eachCategory[cid="+cid+"]").css("background-color","#e2e2e3");
+	    $("div.eachCategory[cid="+cid+"] a").css("color","#000");
+		$("div.productsAsideCategorys[cid=" + cid + "]").hide();
+	}
+	
+</script>
+
+<style>
+/* 	为了测试猫耳朵效果  */
+	div.categoryWithCarousel{
+/*  		margin-top: 30px; */
+	}
+	img#catear{
+		position:absolute;
+		height: 15px;
+		display:none;
+	}
+	
+	
+/* 	上面的导航条 */
+	div.categoryWithCarousel div.headbar{
+		background-color:#dd2727;
+	}
+	div.categoryWithCarousel div.headbar span.head{
+		background-color: #C60A0A;
+	
+		display:inline-block;
+		width:200px;
+		height:36px;
+		line-height:36px;
+		
+		font-size:16px;
+		font-weight: bold;
+		color:white;
+		
+		margin-left:20px;
+		padding-left:10px;
+	}
+	div.categoryWithCarousel div.headbar a{
+		font-size: 16px;
+		color: white;
+		text-decoration:none;
+		margin:0px 20px;
+	}
+	
+/* 	轮播 居中 */
+	div#carousel-of-product{
+		height: 510px;
+		width: 1024px;
+		margin:0px auto;
+	}
+	div#carousel-of-product div.carousel-inner img.carouselImage{
+		height: 510px !important;
+	}
+	
+/* 	轮播 居中轮播打造水平全覆盖效果 */
+	div.categoryWithCarousel{
+		width:100%;
+		position:relative;
+	}
+	div.carouselBackgoroundDiv{
+		width:100%;
+		height:510px;
+		
+		position:absolute;
+		left:0px;
+		top:36px;
+		
+		background-color: #e8e8e8;
+		
+		z-index: -1;
+	}
+/* 	分类菜单和推荐商品 定位 */
+	div.categoryMenu{
+		background-color: #e2e2e3;
+		height: 510px;
+		width: 200px;
+		
+		position: absolute;
+		left:20px;
+		top:36px;
+		
+		display: none;
+	}
+	div.productsAsideCategorys{
+		background-color: white;
+		height:510px;
+		width:800px;
+		
+		position:absolute;
+		left:220px;
+		top:36px;
+		
+		display: none;
+	}
+	
+/* 	分类菜单和推荐商品 内部样式 */
+	div.categoryMenu a{
+		color:#000;
+	}
+	div.categoryMenu a:hover{
+		color:lightskyblue;
+		text-decoration:none;
+	}
+	div.categoryMenu div.eachCategory{
+		line-height:30px;
+		padding-left:10px;
+		font-size:14px;
+	}
+	div.categoryMenu div.eachCategory:hover{
+		background-color:white;
+	}
+	div.categoryMenu div.eachCategory span{
+		margin-right: 10px;
+	}
+	div.productsAsideCategorys div.row{
+		margin:20px 80px 0px;
+	}
+	div.productsAsideCategorys div.row div.seperator{
+		margin-top: 20px;
+		border-bottom-color: #e7e7e7;
+		border-bottom-style: dashed;
+		border-bottom-width: 1px;
+	}
+	div.productsAsideCategorys div.row a{
+		color:#999;
+		font-size:14px;
+		margin:8px;
+	}
+	div.productsAsideCategorys div.row a:hover{
+		color: #C40000;
+    	text-decoration: none;
+	}
+</style>
+
+<body>
+	
+	<div class="categoryWithCarousel">
+		<div class="headbar">
+			<span class="head">
+				<span class="glyphicon glyphicon-th-list"></span>
+				<span>商品分类</span>
+			</span>
+			
+			<img id="catear" alt="" src="http://how2j.cn/tmall/img/site/catear.png">
+			<a href="#nowhere">
+				<span class="glyphicon glyphicon-shopping-cart"></span>
+				<span>天猫超市</span>
+			</a>
+			<a href="#nowhere">
+				<span class="glyphicon glyphicon-globe"></span>
+				<span>天猫超市</span>
+			</a>
+			<a href="#nowhere">平板电视</a>
+			<a href="#nowhere">电热水器</a>
+		</div>
+		
+		<div id="carousel-of-product" class="carousel slide" data-ride="carousel" interval="1000">
+			<ol class="carousel-indicators">
+				<li data-target="#carousel-of-product" data-slide-to="0" class="active"></li>
+				<li data-target="#carousel-of-product" data-slide-to="1"></li>
+				<li data-target="#carousel-of-product" data-slide-to="2"></li>
+				<li data-target="#carousel-of-product" data-slide-to="3"></li>
+			</ol>
+			
+			<div class="carousel-inner">
+				<div class="item active">
+					<img alt="轮播图加载失败" src="http://how2j.cn/tmall/img/lunbo/1.jpg" class="carouselImage">
+				</div>
+				<div class="item">
+					<img alt="轮播图加载失败" src="http://how2j.cn/tmall/img/lunbo/2.jpg" class="carouselImage">
+				</div>
+				<div class="item">
+					<img alt="轮播图加载失败" src="http://how2j.cn/tmall/img/lunbo/3.jpg" class="carouselImage">
+				</div>
+				<div class="item">
+					<img alt="轮播图加载失败" src="http://how2j.cn/tmall/img/lunbo/4.jpg" class="carouselImage">
+				</div>
+			</div>
+		</div>
+		
+<!-- 	因为经过样式设置后，图片居中，那么两侧就会留下空白 -->
+<!-- 	我们用和图片背景色相同的颜色作为背景，就可以让图片看起来是覆盖整个水平方向 -->
+		<div class="carouselBackgoroundDiv"></div>
+			
+		<div class="categoryMenu">
+			<div class="eachCategory" cid="1">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">平板电视 </a>
+            </div>
+			<div class="eachCategory" cid="2">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">马桶</a>
+            </div>
+			<div class="eachCategory" cid="3">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">沙发 </a>
+            </div>
+			<div class="eachCategory" cid="4">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">电热水器 </a>
+            </div>
+			<div class="eachCategory" cid="5">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">平衡车 </a>
+            </div>
+            <div class="eachCategory" cid="6">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">扫地机器人</a>
+            </div>
+			<div class="eachCategory" cid="7">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">原汁机</a>
+            </div>
+			<div class="eachCategory" cid="8">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">冰箱</a>
+            </div>
+			<div class="eachCategory" cid="9">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">空调 </a>
+            </div>
+			<div class="eachCategory" cid="10">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">女表 </a>
+            </div>
+            <div class="eachCategory" cid="11">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">男表 </a>
+            </div>
+			<div class="eachCategory" cid="12">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">男士手拿包</a>
+            </div>
+			<div class="eachCategory" cid="13">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">男士西服</a>
+            </div>
+			<div class="eachCategory" cid="14">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">时尚男鞋</a>
+            </div>
+			<div class="eachCategory" cid="15">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">品牌女装</a>
+            </div>
+            <div class="eachCategory" cid="16">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">太阳镜</a>
+            </div>
+			<div class="eachCategory" cid="17">
+                <span class="glyphicon glyphicon-link"></span>
+                <a href="#nowhere">安全座椅</a>
+            </div>
+		</div>
+		
+		<script>
+	$(function(){
+// 		随机高亮推荐和 style="color:rgb(135,206,250)"样式一样的效果
+	    $("div.productsAsideCategorys div.row a").each(function(){
+	        var v = Math.round(Math.random() *6);
+	        if(v == 1)
+	            $(this).css("color","#87CEFA");
+	    });
+	});
+	</script>
+		<div class="productsAsideCategorys" cid="1">
+			<div class="row">
+                <a href="#nowhere"  style="color:rgb(135,206,250)">屏大影院</a>
+                <a href="#nowhere">周末</a>
+                <a href="#nowhere">新品特惠</a>
+                <a href="#nowhere">32吋电视机</a>
+                <a href="#nowhere">智能网络</a>
+                <div class="seperator"></div>
+            </div>
+            <div class="row">
+                <a href="#nowhere">USB高清解</a>
+                <a href="#nowhere">芒果TV在线</a>
+                <a href="#nowhere">抢购价</a>
+                <a href="#nowhere">32英寸</a>
+                <a href="#nowhere">10核</a>
+                <a href="#nowhere">TCL品牌日</a>
+                <div class="seperator"></div>
+            </div>    
+            <div class="row">
+                <a href="#nowhere">不要赠品</a>
+                <a href="#nowhere">新品上市</a>
+                <a href="#nowhere">4K硬屏</a>
+                <a href="#nowhere">邻100元券</a>
+                <a href="#nowhere">智能高清</a>
+                <a href="#nowhere">8月，酷暑</a>
+                <a href="#nowhere">8月大促</a>
+                <a href="#nowhere">天猫定制</a>
+                <div class="seperator"></div>
+            </div>
+            <div class="row">
+                <a href="#nowhere">智能操作系统</a>
+                <a href="#nowhere">金色外观</a>
+                <a href="#nowhere">三星屏幕</a>
+                <a href="#nowhere">客厅爆款</a>
+                <a href="#nowhere">八核配置</a>
+                <a href="#nowhere">限时特惠</a>
+                <div class="seperator"></div>
+            </div>
+            <div class="row">
+                <a href="#nowhere">限时特惠</a>
+                <a href="#nowhere">热销爆款</a>
+                <a href="#nowhere">4K全高清</a>
+                <a href="#nowhere">六核智能</a>
+                <a href="#nowhere">14核4K</a>
+                <a href="#nowhere">YUNOS</a>
+                <a href="#nowhere">YUNOS</a>
+                <a href="#nowhere">64位处理器</a>
+                <div class="seperator"></div>
+            </div>
+            <div class="row">
+                <a href="#nowhere">YUNOS</a>
+                <a href="#nowhere">微信电视</a>
+                <a href="#nowhere">4k超清</a>
+                <a href="#nowhere">64位真4K</a>
+                <a href="#nowhere">10核机芯</a>
+                <a href="#nowhere">V字黑釉底座</a>
+                <a href="#nowhere">4K超清</a>
+                <div class="seperator"></div>
+            </div>
+            <div class="row">
+                <a href="#nowhere">64位14核</a>
+                <a href="#nowhere">海量影视</a>
+                <a href="#nowhere">人气爆款</a>
+                <a href="#nowhere">限时特惠</a>
+                <a href="#nowhere">真4K屏</a>
+                <a href="#nowhere">65吋巨屏</a>
+                <a href="#nowhere">4K超清视界</a>
+                <a href="#nowhere">限时特惠</a>
+                <div class="seperator"></div>
+            </div>
+            <div class="row">
+                <a href="#nowhere">55寸旗舰</a>
+                <a href="#nowhere">4K机皇</a>
+                <a href="#nowhere">曲面机皇</a>
+                <a href="#nowhere">轻薄4K</a>
+                <div class="seperator"></div>
+            </div>
+		</div>
+		
+		<div class="productsAsideCategorys" cid="2">
+            <div class="row">
+                <a href="#nowhere">高性价比</a>
+                <a href="#nowhere">纳米自洁釉</a>
+                <a href="#nowhere">盖板易拆</a>
+                <a href="#nowhere">领券更优惠</a>
+                <a href="#nowhere">全国联保</a>
+                <a href="#nowhere">咨询大惊喜</a>
+                <a href="#nowhere">咨询大惊喜</a>
+                <div class="seperator"></div>
+            </div>       
+            <div class="row">
+                <a href="#nowhere">全自动感应</a>
+                <a href="#nowhere">即热式功能</a>
+                <a href="#nowhere">智能护理</a>
+                <a href="#nowhere">官方正品</a>
+                <a href="#nowhere">高效节水</a>
+                <a href="#nowhere">立减300</a>
+                <a href="#nowhere">官方正品</a>
+                <div class="seperator"></div>
+            </div>       
+            <div class="row">
+                <a href="#nowhere">3秒速冲</a>
+                <a href="#nowhere">送角阀软管</a>
+                <a href="#nowhere">送角阀软管</a>
+                <a href="#nowhere">12大中心仓</a>
+                <a href="#nowhere">12大中心仓</a>
+                <a href="#nowhere">蹲坐两用</a>
+                <a href="#nowhere">领券减50</a>
+                <a href="#nowhere">全国联保</a>
+                <div class="seperator"></div>
+            </div>       
+            <div class="row">
+                <a href="#nowhere">德国品牌</a>
+                <a href="#nowhere">加购收藏</a>
+                <a href="#nowhere">加长型缸体</a>
+                <a href="#nowhere">喷射虹吸</a>
+                <a href="#nowhere">家装狂欢节</a>
+                <a href="#nowhere">AB1287</a>
+                <a href="#nowhere">领券再减</a>
+                <a href="#nowhere">千城入户</a>
+                <div class="seperator"></div>
+            </div>       
+            <div class="row">
+                <a href="#nowhere">强劲冲力</a>
+                <a href="#nowhere">包安装</a>
+                <a href="#nowhere">土豪直接付款</a>
+                <a href="#nowhere">咨询在线客服</a>
+                <a href="#nowhere">赠送原厂配件</a>
+                <a href="#nowhere">新聚汇</a>
+                <a href="#nowhere">吸力哥</a>
+                <a href="#nowhere">九牧正品</a>
+                <div class="seperator"></div>
+            </div>       
+            <div class="row">
+                <a href="#nowhere">覆盖区域内</a>
+                <a href="#nowhere">指定1800</a>
+                <a href="#nowhere">晒图返10元</a>
+                <a href="#nowhere">1300城免</a>
+                <a href="#nowhere">久坐舒适</a>
+                <a href="#nowhere">晒图送20元</a>
+                <a href="#nowhere">摩普智能马桶</a>
+                <a href="#nowhere">双杆喷头</a>
+                <div class="seperator"></div>
+            </div>       
+            <div class="row">
+                <a href="#nowhere">送空调扇</a>
+                <a href="#nowhere">咨询大惊喜</a>
+                <a href="#nowhere">节水小管家</a>
+                <a href="#nowhere">高端大气</a>
+                <a href="#nowhere">科勒授权</a>
+                <a href="#nowhere">超旋风系列</a>
+                <a href="#nowhere">限时升级</a>
+                <div class="seperator"></div>
+            </div>       
+            <div class="row">
+                <a href="#nowhere">立减500</a>
+                <a href="#nowhere">赠送角阀软管</a>
+                <a href="#nowhere">法恩莎正品</a>
+                <a href="#nowhere">12大中心仓</a>
+                <div class="seperator"></div>
+            </div>       
+	    </div>  
+	</div><!-- categoryWithCarousel -->
+	
+</body>
+</html>

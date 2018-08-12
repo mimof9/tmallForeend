@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<web-app>
+	
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.html</url-pattern>
+			<page-encoding>UTF-8</page-encoding>
+		</jsp-property-group>
+	</jsp-config>
+
+</web-app>
+
