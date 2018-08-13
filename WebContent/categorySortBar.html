@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>排序方式选择条</title>
+
+<script src="js/jquery/2.0.0/jquery.min.js" ></script>
+<link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+<script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
+</head>
+
+<script>
+	$(function(){
+		$("input.sortBarPrice").keyup(function(){
+			var num = $(this).val();
+			//如果没有输入就全部显示
+			if(num.length == 0){
+				$("div.productUnit").show();
+				return;
+			}
+			
+			//如果输入不是数字或者为负数 置为1
+			num = parseInt(num);
+			if(isNaN(num))
+				num=1;
+			if(num<=0)
+				num=1;
+			$(this).val(num);
+			
+			var begin = $("input.beginPrice").val();
+			var end = $("input.endPrice").val();
+			if(!isNaN(begin) && !isNaN(end)){
+				$("div.productUnit").hide();
+				$("div.productUnit").each(function(){
+					var price = $(this).attr("price");
+					price = new Number(price);
+					if(price<=end && price>=begin)
+						$(this).show();
+				})
+			}
+		})
+	})
+</script>
+
+<style>
+	body{
+	    font-size: 12px ;
+	    font-family: Arial;
+	}
+/* 	分类页整体居中 */
+	div.categoryPageDiv{
+		max-width:1013px;
+		margin:10px auto;
+	}
+/* 	排序工具条 */
+	div.categoryPageDiv div.categorySortbar{
+		background-color: #FAF9F9;
+	    margin: 40px 20px 20px 20px;
+	    padding: 4px;
+	}
+/* 	排序关键词 */
+	div.categoryPageDiv div.categorySortbar table.sortKey{
+		display:inline-block;
+		border-collapse: collapse;
+	}
+	div.categoryPageDiv div.categorySortbar table.sortKey td{
+		height:24px;
+		border:1px solid #cccccc;
+		font-size:12px;
+		padding:3px;
+	}
+	div.categoryPageDiv div.categorySortbar table.sortKey td:hover{
+		background-color:#f1edec;
+	}
+	div.categoryPageDiv div.categorySortbar table.sortKey td a{
+		color:#806f66;
+	}
+	div.categoryPageDiv div.categorySortbar table.sortKey td a:hover{
+		color:#c40000;
+	}
+	div.categoryPageDiv div.categorySortbar table.sortKey td a span.glyphicon{
+		font-size:10px;
+	}
+/* 	排序价格区间 */
+	div.categoryPageDiv div.categorySortbar table.sortPrice{
+		display:inline-block;
+		border-collapse: collapse;
+	}
+	div.categoryPageDiv div.categorySortbar table.sortPrice td{
+/* 		需要注意的是，如果这里设置成高度为17px 那么内容就只有9px是放不下高度为15px的input的 */
+		height:24px;
+		border:1px solid #cccccc;
+		font-size:12px;
+		padding:3px;
+	}
+	div.categoryPageDiv div.categorySortbar table.sortPrice td span.priceMiddleColumn{
+		background-color: #F1EDEC;
+		width: 5px;
+	    vertical-align: middle;
+	    color: #CCCCCC;
+	}
+	div.categoryPageDiv div.categorySortbar table.sortPrice td input{
+		height: 15px;
+    	width: 50px;
+    	border-width: 0px;
+	}
+</style>
+
+<body>
+	<div class="categoryPageDiv">
+		<img alt="分类图片加载失败" src="http://how2j.cn/tmall/img/category/72.jpg">
+		
+		<div class="categorySortbar">
+			<table class="sortKey">
+				<tbody>
+					<tr>
+						<td>
+							<a href="#nowhere">
+								综合<span class="glyphicon glyphicon-arrow-down"></span>
+							</a>
+						</td>
+						<td>
+							<a href="#nowhere">
+								人气<span class="glyphicon glyphicon-arrow-down"></span>
+							</a>
+						</td>
+						<td>
+							<a href="#nowhere">
+								新品<span class="glyphicon glyphicon-arrow-down"></span>
+							</a>
+						</td>
+						<td>
+							<a href="#nowhere">
+								销量<span class="glyphicon glyphicon-arrow-down"></span>
+							</a>
+						</td>
+						<td>
+							<a href="#nowhere">
+								价格<span class="glyphicon glyphicon-resize-vertical"></span>
+							</a>
+						</td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<table class="sortPrice">
+				<tbody>
+					<tr>
+						<td><input type="text" placeholder="请输入" class="sortBarPrice beginPrice"></td>
+						<td><span class="priceMiddleColumn">-</span></td>
+						<td><input type="text" placeholder="请输入" class="sortBarPrice endPrice"></td>
+					</tr>
+				</tbody>
+			</table>
+		</div><!-- categorySortbar -->
+		
+	</div><!-- categoryPageDiv -->
+</body>
+</html>

@@ -4,19 +4,17 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>首页</title>
+<title>分类页面</title>
 </head>
 
-<style>
-	
-</style>
+
 
 <body>
 	<%@include file="topnavigator.html" %>
 	<%@include file="searchbar.html" %>
 	
-	<%@include file="categoryWithCarousel.html" %>
-	<%@include file="homepageCategoryProducts.html" %>
+	<%@include file="categorySortBar.html" %>
+	<%@include file="categoryProducts.html" %>
 	
 	<%@include file="footer.html" %>
 </body>
