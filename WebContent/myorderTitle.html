@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>我的订单页面 标题栏</title>
+
+<script src="js/jquery/2.0.0/jquery.min.js" ></script>
+<link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+<script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
+</head>
+
+<style>
+/* 	我的订单div 居中 */
+	div.boughtDiv{
+	    max-width: 1013px;
+	    margin: 10px auto;
+	}
+	
+/* 	订单状态栏  左浮之后没有间距 单个div的下边框连起来 就像一个整体*/
+	div.orderStatus div{
+		border-bottom: 2px solid #e8e8e8;
+		float:left;				
+	}
+	div.orderStatus div.orderStatusLastOne{	/*补全整个下边框*/
+	    float: none !important;	/*取消浮动，就会自动出现在右边，并且把剩下的占满，因为是div*/
+	    border-bottom: 2px solid #E8E8E8;
+	    height:35px;
+	}
+	div.orderStatus a{
+		display:inline-block;
+		margin-bottom:10px;
+		padding:0px 20px;
+		
+		border-right: 1px solid #e8e8e8;
+		
+		font-size:16px;
+		font-weight: bold;
+		color:black;
+	}
+	div.orderStatus a:hover{
+		color:#c40000;
+		text-decoration: none;
+	}
+	div.orderStatus a.noRightborder{
+		border-right-width:0px !important;
+	}
+/* 	订单状态栏 被选中项 */
+	div.orderStatus div.selectedOrderStatus{
+	    border-bottom: 2px solid #C40000;
+	}
+	div.orderStatus div.selectedOrderStatus a{
+	    color: #C40000;
+	}
+/* 	订单列表标题栏 */
+	table.orderListTitleTable{
+	    width: 100%;
+	    margin: 20px 0px;
+	    border: 1px solid #E8E8E8;
+	    background-color: #F5F5F5;
+
+	    text-align: center;
+	    font-size:12px;
+	}
+	table.orderListTitleTable td{
+	    padding: 12px 0px;
+	}
+	
+</style>
+
+<script>
+	$(function(){
+		$("a[orderstatus]").click(function(){
+// 			通过orderstatus自定义属性 显示对应状态订单项
+			var orderStatus = $(this).attr("orderstatus");
+			
+			if("all" == orderStatus){
+				$("table[orderstatus]").show();
+			}else{
+				$("table[orderstatus]").hide();
+				$("table[orderstatus="+orderStatus+"]").show();
+			}
+// 			修改订单状态栏被选中项
+			$("div.orderStatus div").removeClass("selectedOrderStatus");
+			$(this).parent("div").addClass("selectedOrderStatus");
+		})		
+	})
+</script>
+
+<body>
+	<div class="boughtDiv">
+		<div class="orderStatus">
+			<div class="selectedOrderStatus"><a href="#nowhere" orderstatus="all">所有订单</a></div>
+			<div><a href="#nowhere" orderstatus="waitePay">待付款</a></div>
+			<div><a href="#nowhere" orderstatus="waitDelivery">待发货</a></div>
+			<div><a href="#nowhere" orderstatus="waitConfirm">待收货</a></div>
+			<div><a href="#nowhere" orderstatus="waitReview" class="noRightborder">待评价</a></div>
+			<div class="orderStatusLastOne"></div>
+		</div>
+		
+		<div style="clear:both"></div>
+		
+		<div class="orderListTitle">
+			<table class="orderListTitleTable">
+	            <tbody>
+	            	<tr>
+		                <td>宝贝</td>
+		                <td width="100px">单价</td>
+		                <td width="100px">数量</td>
+		                <td width="120px">实付款</td>
+		                <td width="100px">交易操作</td>
+		            </tr>
+	        	</tbody>
+	        </table>
+		</div>
+	</div>
+</body>
+</html>
