@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>结算页面 头部和收货地址</title>
+
+<script src="js/jquery/2.0.0/jquery.min.js" ></script>
+<link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+<script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
+</head>
+
+<style>
+/* 	结算div 居中 */
+	div.settleAccountDiv{
+		max-width:1013px;
+		margin:20px auto;
+	}
+/* 	地址 */
+	div.headAndAddress div.addressTitle{
+		text-align: left;
+		color:#333333;
+		font-size:16px;
+		font-weight: bold;
+		
+		margin:20px 5px 30px;
+	}
+	div.headAndAddress table.addressTable{
+		width:600px;
+		margin:20px 20px;
+		font-size:12px;
+	}
+	div.headAndAddress table.addressTable td{
+		height: 30px;
+		text-align: left;
+		vertical-align: top;
+		padding-right:5px;
+		color:#333333;
+	}
+	div.headAndAddress table.addressTable td.firstColumn{
+		width:100px;
+	}
+	div.headAndAddress table.addressTable td textarea{
+		border:1px solid #afafaf;
+		margin-bottom:10px;
+		width:400px;
+	}
+	div.headAndAddress table.addressTable td input{
+		border:1px solid #afafaf;
+		width:200px;
+	}
+	span.redStar{
+		color: red;
+   	 	font-size: 8px;
+	}
+	
+</style>
+
+<body>
+	
+	<div class="settleAccountDiv">
+		<div class="headAndAddress">
+			<div class="head">
+				<img src="http://how2j.cn/tmall/img/site/simpleLogo.png" class="pull-left">
+        		<img src="http://how2j.cn/tmall/img/site/buyflow.png" class="pull-right">
+        		<div style="clear:both"></div>
+			</div>
+			
+			<div class="addressTitle">输入收货地址</div>
+			<div class="address">
+				<table class="addressTable">
+					<tbody>
+						<tr>
+							<td>详细地址<span class="redStar">*</span></td>
+							<td>
+								<textarea name="address" placeholder="建议您如实填写详细收货地址，例如街道名称，门牌号码，楼层和房间号等信息"></textarea>
+							</td>
+						</tr>
+						<tr>
+							<td>邮政编码</td>
+							<td><input name="post" type="text" placeholder="如果您不清楚区号，请填写0000"></td>
+						</tr>
+						<tr>
+							<td>收货人姓名<span class="redStar">*</span></td>
+							<td><input name="receiver" type="text" placeholder="长度不超过25个字符"></td>
+						</tr>
+						<tr>
+							<td>手机号码<span class="redStar">*</span></td>
+							<td><input name="mobile" type="text" placeholder="请输入11位手机号码"></td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+			
+	</div><!-- settleAccountDiv -->
+	
+</body>
+</html>
