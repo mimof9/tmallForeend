@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>支付</title>
+
+<script src="js/jquery/2.0.0/jquery.min.js" ></script>
+<link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+<script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
+</head>
+
+<style>
+	body{
+	    font-size: 12px;
+	    font-family: Arial;
+	}
+
+	div.payDiv{
+		max-width: 1013px;
+		margin:20px auto;
+		text-align: center;
+		
+		padding-bottom: 40px;
+	}
+	
+	div.payDiv img.logo{
+		float:left;
+		margin:20px;
+	}
+	
+	div.payDiv div.saoyisaoText{
+		clear:both;
+		color:#4d4d4d;
+	}
+	
+	div.payDiv div.price{
+		color: #FF6600;
+	    font-weight: bold;
+	    font-size: 20px;
+	    margin: 10px;
+	}
+	
+	div.payDiv button.payButton{
+		width:107px;
+		height:31px;
+		border: 1px solid #00AAEE;
+		margin-top: 20px;
+
+		background-color: #00AAEE;;
+		
+		line-height:31px;
+		text-align:center;
+		
+		color:white;
+		font-size:14px;
+		font-weight: 700;
+	}
+</style>
+
+<body>
+	<div class="payDiv">
+		<img class="logo" src="http://how2j.cn/tmall/img/site/simpleLogo.png">
+		
+		<div class="saoyisaoText">扫一扫付款(元)</div>
+		<div class="price">￥1,359.20</div>
+		<div>
+			<img src="http://how2j.cn/tmall/img/site/alipay2wei.png" class="erweima">
+		</div>
+		<a href="#nowhere">
+			<button class="payButton" type="button">确认支付</button>
+		</a>
+	</div>
+</body>
+</html>
