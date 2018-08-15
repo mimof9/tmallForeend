@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>评价页面 商品基本信息</title>
+
+<script src="js/jquery/2.0.0/jquery.min.js" ></script>
+<link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+<script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
+</head>
+
+<style>
+	div.reviewDiv{
+		width: 1013px;
+		margin: 10px auto;
+	}
+	
+/* 	左侧图片 */
+	div.reviewDiv div.productImgDiv{
+		float:left;
+		
+		border:1px solid #E7E7E7;
+		text-align: center;
+		
+		width: 464px;
+	}
+	div.reviewDiv div.productImgDiv img.productImg{
+		width: 90%;
+	}
+/* 	右侧div */
+	div.reviewDiv div.productInfo{
+		overflow:hidden;
+		
+		border-top:1px solid #E7E7E7;
+		padding:30px 20px;
+	}
+	div.reviewDiv div.productInfo div.title{
+		color: black;
+		font-size: 16px;
+		font-weight: bold;
+	}
+	div.reviewDiv div.productInfo table{
+		margin: 20px 10px;
+		font-size:12px;
+	}
+	div.reviewDiv div.productInfo table td{
+		padding-bottom: 5px;
+		color: #999999;
+	}
+	div.reviewDiv div.productInfo table td span.price{
+		color: #C40000;
+		font-size: 20px;
+		font-weight: bold;
+	}
+	div.reviewDiv div.productInfo table td span.number{
+		color: #C40000;
+		font-size: 14px;
+		font-weight: bold;
+	}
+/* 	购买日期 */
+	div.reviewDiv div.date{
+		border: 1px solid #F6F5F3;
+		background-color: #FDFBFA;
+		height: 166px;
+		padding:16px 0px 16px 81px;
+	}
+	div.reviewDiv div.date img{
+		display: inline-block;
+		width: 23px;
+		height: 42px;
+		border: 1px solid #E1E1E1;
+		padding: 0px;
+		background-color: white;
+	}
+	div.reviewDiv div.date span.message{
+		display: inline-block;
+		width: 200px;
+		height: 42px;
+		border: 1px solid #EFEFEF;
+		padding: 4px;
+		
+		position: relative;
+		left: -4px;		/*只要不是浮动的 左右间隔天生就有4个像素*/
+		
+		vertical-align:top;	/*通过这个让顶部对齐*/
+				
+		color: #666666;
+		font-size:12px;
+	}
+		
+</style>
+
+<body>
+	<div class="reviewDiv">
+		<div class="productImgDiv">
+			<img class="productImg" src="http://how2j.cn/tmall/img/productSingle/8697.jpg">		
+		</div>
+		
+		<div class="productInfo">
+			<div class="title">2016夏季新款女装雪纺衫短裤两件套 韩版时尚名媛休闲套装女夏装</div>
+			
+			<table>
+				<tbody>
+					<tr>
+						<td>价格：<td>
+						<td><span class="price">￥263.00</span>元<td>
+					</tr>
+					<tr>
+						<td>配送<td>
+						<td>快递：00<td>
+					</tr>
+					<tr>
+						<td>月销量：<td>
+						<td><span class="number">50</span>件<td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<div class="date">
+				<img src="http://how2j.cn/tmall/img/site/reviewLight.png"/>
+                <span class="message">现在查看的是 您所购买商品的信息于2016年09月12下单购买了此商品</span>
+			</div>
+		</div>
+		
+		<div style="clear:both"></div>
+	</div>
+</body>
+</html>

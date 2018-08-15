@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>评价页面 写评价 写完评价后可以看到全部评价</title>
+
+<script src="js/jquery/2.0.0/jquery.min.js" ></script>
+<link href="css/bootstrap/3.3.6/bootstrap.min.css" rel="stylesheet">
+<script src="js/bootstrap/3.3.6/bootstrap.min.js"></script>
+</head>
+
+<style>
+/* 	写评价的div */
+	div.reviewDiv div.writeReview{
+		border: 1px solid #D1CCC8;
+		margin: 20px 0px;
+		background-color: #EFEFEF;
+	}
+	div.reviewDiv div.writeReview div.tip{
+		margin: 20px 40px;
+		font-size: 16px;
+		color: #333333;
+		font-weight: bold;
+	}
+/* 	评价表格 */
+	div.reviewDiv div.writeReview table.writeReviewTable{
+		margin: 20px 40px;
+		font-size: 12px;
+		
+	}	
+	div.reviewDiv div.writeReview table.writeReviewTable td{
+		border:1px solid #E7E7E7;
+		padding: 10px;
+		background-color: white;
+	}
+	div.reviewDiv div.writeReview table.writeReviewTable textarea{
+		border-width: 0px;
+		resize: none;
+		width: 420px;
+		height: 120px;
+	}
+/* 	提交按钮 div */
+	div.reviewDiv div.writeReview div.submitReviewDiv {
+		text-align: center;
+		background-color: white;
+		padding:15px;
+	}
+	div.reviewDiv div.writeReview div.submitReviewDiv button.submitReviewButton{
+		background-color: #c40000;
+		width: 72px;
+		height: 26px;
+		
+		border-width:0px;
+		border-radius:2px;
+		
+		color:white;
+		font-weight: bold;
+	}
+	
+/* 	累计评价 div */
+	div.reviewDiv div.allReview div.redTop{
+		margin-top: 20px;
+	}
+	div.reviewDiv div.allReview div.redTop{
+		height: 6px;
+		width: 180px;
+		background-color: #C40000;
+	}
+	div.reviewDiv div.allReview div.tipMiddle{
+		line-height: 29px;
+		width: 180px;
+		background-color: #F6F5F1;
+		
+		border-left: 1px solid #D5D4D4;
+		border-right: 1px solid #D5D4D4;
+		
+		text-align: center;
+		font-size: 14px;
+		color: #363535;
+		font-weight: bold;
+	}
+	div.reviewDiv div.allReview div.whiteButtom{
+		height: 6px;
+		width: 180px;
+		background-color: #F6F5F1;
+		float:left;
+		
+		border-left: 1px solid #D5D4D4;
+		border-bottom: 1px solid #D5D4D4;
+	}
+	div.reviewDiv div.allReview div.tail{
+		height: 6px;
+		background-color: #F6F5F1;
+		
+		border: 1px solid #D5D4D4;
+		border-left: 0px;
+	}
+
+</style>
+
+<body>
+	<div class="reviewDiv">
+		<div class="allReview">
+			<div class="redTop"></div>
+			<div class="tipMiddle">
+				<span>累计评价</span>
+				<span style="color:#284CA5;">13</span>
+			</div>
+			<div class="whiteButtom"></div>
+			<div class="tail"></div>
+		</div>
+		
+		<div class="writeReview">
+			<div class="tip">其他买家爱，需要你的建议哦！</div>
+			
+			<table class="writeReviewTable">
+				<tbody>
+					<tr>
+						<td>评价商品</td>
+						<td><textarea name="content"></textarea></td>
+					</tr>
+				</tbody>
+			</table>
+			
+			<div class="submitReviewDiv">
+				<button class="submitReviewButton">提交评价</button>
+			</div>
+		</div>
+	</div>
+</body>
+</html>
